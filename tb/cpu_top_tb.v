@@ -16,13 +16,12 @@ initial begin
     $dumpvars(0, cpu_top_tb);
 
     clk = 0;
-
     reset = 1;
-    #10;
 
+    #10;
     reset = 0;
 
-    #60;
+    #100;
 
     $finish;
 

@@ -13,6 +13,15 @@ module register_file(
 );
 
 reg [31:0] registers [31:0];
+integer i;
+
+initial begin
+    for(i=0;i<32;i=i+1)
+        registers[i] = 0;
+
+    registers[1] = 10;
+    registers[2] = 20;
+end
 
 assign read_data1 = registers[rs1];
 assign read_data2 = registers[rs2];
