@@ -23,7 +23,11 @@ always @(*) begin
             reg_write = 1;
             alu_src   = 0;
         end
-
+                // ADDI
+        7'b0010011: begin
+            reg_write = 1;
+            alu_src   = 1;
+        end
         // LW
         7'b0000011: begin
             reg_write  = 1;
