@@ -1,14 +1,15 @@
 module pc(
     input clk,
     input reset,
+    input [31:0] next_pc,
     output reg [31:0] pc_out
 );
 
 always @(posedge clk or posedge reset) begin
-    if(reset)
-        pc_out <= 32'd0;
+    if (reset)
+        pc_out <= 32'b0;
     else
-        pc_out <= pc_out + 32'd4;
+        pc_out <= next_pc;
 end
 
 endmodule

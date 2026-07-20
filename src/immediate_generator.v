@@ -7,10 +7,17 @@ always @(*) begin
 
     case(instruction[6:0])
 
-        // I-Type
-        7'b0010011:
+        // ADDI, LW
+        7'b0010011,
+        7'b0000011:
             immediate = {{20{instruction[31]}},
                          instruction[31:20]};
+
+        // SW
+        7'b0100011:
+            immediate = {{20{instruction[31]}},
+                         instruction[31:25],
+                         instruction[11:7]};
 
         default:
             immediate = 32'b0;

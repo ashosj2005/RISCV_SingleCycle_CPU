@@ -1,5 +1,5 @@
 module instruction_memory(
-    input [31:0] address,
+    input  [31:0] address,
     output [31:0] instruction
 );
 
@@ -7,29 +7,26 @@ reg [31:0] memory [0:255];
 
 initial begin
 
-    // ADDI x1,x0,1
-    memory[0] = 32'h00100093;
+    // ADDI x1, x0, 5
+    memory[0] = 32'h00500093;
 
-    // ADDI x2,x0,2
-    memory[1] = 32'h00200113;
+    // JAL x5, +8
+    memory[1] = 32'h008002EF;
 
-    // ADD x3,x1,x3
-    memory[2] = 32'h003081B3;
+    // ADDI x2, x0, 99 (should be skipped)
+    memory[2] = 32'h06300113;
 
-    // SUB x4,x1,x2
-    memory[3] = 32'h40208233;
+    // ADDI x3, x0, 7 (should execute)
+    memory[3] = 32'h00700193;
 
-    // AND x5,x1,x2
-    memory[4] = 32'h0020F2B3;
-
-    // OR x6,x1,x2
-    memory[5] = 32'h0020E333;
-
-    // NOP
+    // NOPs
+    memory[4] = 32'h00000013;
+    memory[5] = 32'h00000013;
     memory[6] = 32'h00000013;
+    memory[7] = 32'h00000013;
 
 end
-
 assign instruction = memory[address[31:2]];
 
 endmodule
+
